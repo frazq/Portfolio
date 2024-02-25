@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikacja Zadań</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+<style>
+     body {
+            background: linear-gradient(to right, #000033, #000000);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .ui.container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+      
+    </style>
+</head>
+<body>
+
+    <div style="margin-top: 50px;" class="ui container">
+
+    <h1 style="color: #ffffff;" class="ui center aligned big header">Lista zadań</h1>
+    
+    <form class="ui form" action="/add" method="post">
+        <div class="field">
+            <label style="color: #ffffff;" for="title">Tytuł zadania: </label>
+            <input type="text" name="title" placeholder="Wpisz zadanie...">
+            <br>
+            <button class="ui blue button" type="submit">Dodaj &nbsp&nbsp<i class="address book icon"></i></button>
+        </div>
+    </form>
+
+    {% for todo  in todo_list %}
+    <div class="ui segment">
+        <p class="ui big header"> {{ todo.id }} | {{ todo.title }} </p>
+
+        {% if todo.complete == False %}
+            <span class="ui gray label">Nie ukończone</span>
+        {% else  %}
+            <span class="ui green label">Ukończone</span>
+        {% endif %}    
+
+        <a class="ui pink button"  href="/update/{{ todo.id }}">Aktualizuj &nbsp&nbsp<i class="edit icon"></i></a>
+        <a class="ui green button" href="/delete/{{ todo.id }}">Usuń &nbsp&nbsp<i class="trash alternate icon"></i></a>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
