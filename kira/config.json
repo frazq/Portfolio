@@ -1,0 +1,23 @@
+{
+  "theme": "superhero",
+  "dictionaries": {
+    "system": {
+      "initialized": "Nasłuchiwanie..."
+    },
+    "triggers": {
+      "exit": ["wyjdź", "do widzenia"],
+      "search": ["sprawdź", "znajdź", "szukaj", "wyszukaj", "pokaż"],
+      "open": ["otwórz", "włącz", "uruchom"],
+      "joke": ["kawał", "żart", "dowcip"]
+    },
+    "jokes": [
+      "Dzień dobry, do czego służą okulary? Do widzenia.",
+      "Dlaczego nie da się zjeść zegarka? Bo to zbyt czasochłonne.",
+      "W czym najbardziej lubi chodzić jajko? W koszulce.",
+      "Dlaczego w kosmosie nie ma dobrych imprez? Bo nie ma atmosfery.",
+      "Mama pyta Jasia. Jasiu, brałeś prysznic? Na co Jasiu odpowiada. Dlaczego zawsze jak coś znika, to moja wina!?",
+      "Gdzie bociany chodzą do sklepu? Do żabki.",
+      "Dlaczego dom nie mówi? Bo go zamurowało."
+    ]
+  }
+}
