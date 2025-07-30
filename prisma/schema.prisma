@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id String @id @default(cuid())
+  url String @unique
+  title String
+  price Int
+  pricePerM2 Int?
+  area Float?
+  rooms Int?
+  floor Int?
+  totalFloors Int?
+  buildYear Int?
+  address String
+  city String
+  district String?
+  latitude Float?
+  longitude Float?
+  description String?
+  photos String[]
+  source PropertySource
+  isActive Boolean @default(true)
+
+  // Analiza inwestycyjna
+  marketValue Int?
+  investmentScore Float?
+  renovationCost Int?
+  potentialRent Int?
+  roi Float?
+
+  // Metadane
+  firstSeenAt DateTime @default(now())
+  lastUpdatedAt DateTime @updatedAt
+  scrapedAt DateTime @default(now())
+
+  alerts PropertyAlert[]
+
+  @@map("properties")
+}
+
+model PropertyAlert {
+  id String @id @default(cuid())
+  propertyId String
+  property Property @relation(fields: [propertyId], references: [id])
+  userId String
+  alertType AlertType
+  isRead Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("property_alerts")
+}
+
+enum PropertySource {
+  OTODOM
+  OLX
+  GRATKA
+  MORIZON
+  ADRESOWO
+}
+
+enum AlertType {
+  PRICE_DROP
+  NEW_OPPORTUNITY
+  HIGH_ROI
+  UNDERVALUED
+}
